@@ -3,3 +3,6 @@
 
 ###  MPV下载
 https://sourceforge.net/projects/mpv-player-windows/files/64bit/
+
+新版棒棒的
+https://sourceforge.net/projects/mpv-player-windows/files/64bit-v3/
