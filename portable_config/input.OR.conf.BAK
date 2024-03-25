@@ -1,4 +1,3 @@
-# original, https://github.com/Argon-/mpv-config/raw/master/input.conf
 # vim: syntax=config
 
 
@@ -58,35 +57,34 @@ ALT+LEFT   sub-seek -1 ; show-text "Sub Seek -1"
 # ` [1] [2] [3] [4] [5] [6] [7] [8] [9] [0] - =
 # ~ [!]  @   #   $   %   ^   &   *   (   )  _ +
 
-1      add contrast -0.25 ; show-text "Contrast: ${contrast}"
-2      add contrast +0.25 ; show-text "Contrast: ${contrast}"
-3      add brightness -0.25 ; show-text "Brightness: ${brightness}"
-4      add brightness +0.25 ; show-text "Brightness: ${brightness}"
-5      add gamma -0.25 ; show-text "Gamma: ${gamma}"
-6      add gamma +0.25 ; show-text "Gamma: ${gamma}"
-7      add saturation -0.25 ; show-text "Saturation: ${saturation}"
-8      add saturation +0.25 ; show-text "Saturation: ${saturation}"
+1      add contrast -1 ; show-text "Contrast: ${contrast}"
+2      add contrast +1 ; show-text "Contrast: ${contrast}"
+3      add brightness -1 ; show-text "Brightness: ${brightness}"
+4      add brightness +1 ; show-text "Brightness: ${brightness}"
+5      add gamma -1 ; show-text "Gamma: ${gamma}"
+6      add gamma +1 ; show-text "Gamma: ${gamma}"
+7      add saturation -1 ; show-text "Saturation: ${saturation}"
+8      add saturation +1 ; show-text "Saturation: ${saturation}"
 
-9      add volume -4 ; show-text "Volume: ${volume}"
-0      add volume +4 ; show-text "Volume: ${volume}"
+9      add volume -2 ; show-text "Volume: ${volume}"
+0      add volume +2 ; show-text "Volume: ${volume}"
 
 !      cycle ontop
-@      cycle-values sub-ass-style-overrides "" "FontName=方正兰亭黑_GBK,Default.Bold=1" "FontName=PMingLiU,Default.Bold=1" "FontName=PMingLiU-ExtB,Default.Bold=1" "FontName=HONOR Sans CN Medium,Default"
-$      cycle-values sub-font-size "35" "40" "45"
 
-CTRL+0 show-text "Shaders: ${glsl-shaders}"
-CTRL+1 change-list glsl-shaders toggle "~~/shaders/unsharp_masking.glsl"
-CTRL+2 change-list glsl-shaders toggle "~~/shaders/filmgrain-smooth.glsl"
-CTRL+3 change-list glsl-shaders set "~~/shaders/KrigBilateral.glsl;~~/shaders/FSR.glsl"
-CTRL+4 change-list glsl-shaders set "~~/shaders/KrigBilateral.glsl;~~/shaders/FSRCNNX_x2_16-0-4-1_distort.glsl;~~/shaders/SSimDownscaler.glsl"
-CTRL+5 change-list glsl-shaders set "~~/shaders/KrigBilateral.glsl;~~/shaders/FSRCNNX_x2_16-0-4-1_anime_distort;~~/shaders/SSimDownscaler.glsl"
-CTRL+6 change-list glsl-shaders toggle  "~~/shaders/AMD_CAS_lite_luma.glsl"
-# CTRL+7 change-list glsl-shaders toggle  "~~/shaders/AMD_CAS_scaled.glsl"
-CTRL+9 change-list glsl-shaders clr ""
+CTRL+1 show-text "Shaders: ${glsl-shaders}"
+CTRL+2 change-list glsl-shaders append "~/.mpv/shaders/ravu-r3-rgb.hook"
+CTRL+3 change-list glsl-shaders append "~/.mpv/shaders/FSRCNNX_x2_8-0-4-1.glsl"
+CTRL+4 change-list glsl-shaders toggle "~/.mpv/shaders/KrigBilateral.glsl"
+CTRL+5 change-list glsl-shaders toggle "~/.mpv/shaders/SSimSuperRes.glsl"
+CTRL+6 change-list glsl-shaders toggle "~/.mpv/shaders/SSimDownscaler.glsl"
+CTRL+7 change-list glsl-shaders toggle "~/.mpv/shaders/FineSharp.glsl"
+CTRL+8 change-list glsl-shaders toggle "~/.mpv/shaders/adaptive-sharpen.glsl"
+CTRL+0 set glsl-shaders ""
 
 `      ignore
 ~      ignore
 #      ignore
+$      ignore
 %      ignore
 ^      ignore
 &      ignore
@@ -100,11 +98,10 @@ CTRL+9 change-list glsl-shaders clr ""
 # [Q] [W]  E   R  [T] [Y] [U] [I]  O  [P] { }
 
 Q      quit
-q      script-binding auto-save-state/quit-watch-later-conditional
+q      script-binding auto_save_state/quit-watch-later-conditional
 
 w      script-message osc-playlist
-W      ignore
-#W      playlist-shuffle
+W      playlist-shuffle
 e      playlist-prev ; show-text "${playlist-pos-1}/${playlist-count}"
 E      ignore
 
@@ -126,53 +123,46 @@ I      script-binding stats/display-stats-toggle
 o      cycle-values osd-level 3 1
 O      ignore
 p      cycle-values video-rotate 90 180 270 0
-P      cycle-values video-aspect "16:9" "4:3" "21:9" "16:10"
+P      cycle-values video-aspect "16:9" "4:3" "2.35:1" "16:10"
 
-[     cycle-values sub-ass-force-style "Kerning=no" "Kerning=yes"
-# "lavfi=graph=[hqdn3d=2.0]" 
-]     cycle-values vf "fspp=5:0:0" "spp=6:0:hard" "pp=fa/-al" ""
+[     ignore
+]     ignore
 {     ignore
 }     ignore
-\     cycle-values sharpen "0.133" "0.81" "0"
 
 
 
-# [a] [s] [d] [f] [g] [h] [j] [k] [l] !!!
+# [a] [s] [d] [f] [g] [h] [j] [k] [l]
 # [A] [S] [D] [F] [G] [H] [J] [K] [L]
 
 a      cycle audio                                                     # switch audio streams
-#A      cycle-values af "lavfi=[loudnorm=I=-16:TP=-3:LRA=4]" ""         # fix bgm too loud and speech too quiet
-A      cycle-values af "lavfi=[loudnorm=I=-17:TP=-1:LRA=11]" "lavfi=[loudnorm=I=-16:TP=-1:LRA=11]" ""         # fix bgm too loud and speech too quiet
+A      cycle-values af "lavfi=[dynaudnorm=f=200:g=5:r=0.1]" ""         # dynamic range compression
 CTRL+a script-binding auto_audio_device/toggle-switching               # toggle automatic audio device switching
 
 s      cycle sub                                                       # cycle through subtitles
 S      cycle sub-visibility
 CTRL+s cycle secondary-sid
 
-d      cycle-values window-scale "1.5" "2.0" "2.5" "3.0" "0.75" "0.5" "1.0" ; show-text "Scale: ${window-scale}"
+d      cycle-values window-scale "1.5" "2.0" "3.0" "0.5" "1.0" ; show-text "Scale: ${window-scale}"
 D      cycle edition
 CTRL+d cycle video
 
 f      cycle fullscreen ; show-text "Scale: ${window-scale}"
-F      cycle fullscreen ; show-text "Scale: ${window-scale}"
+F      vf clr "" ; show-text "Filters cleared"
 
 g      cycle-values video-sync display-resample audio ; cycle-values interpolation yes no ; show-text "Interpolation: ${interpolation} (${tscale})"
 G      cycle-values tscale "linear" "catmull_rom" "mitchell" "bicubic" "oversample" ; show-text "Interpolation: ${interpolation} (${tscale})"
 CTRL+g cycle-values interpolation no yes ; show-text "Interpolation: ${interpolation} (${tscale})"
-#ALT+g  vf toggle format=yuv420p,vapoursynth=~~/vs-scripts/motion-interpolation.py:4
+ALT+g  vf toggle format=yuv420p,vapoursynth=~~/vs-scripts/motion-interpolation.py:4
 
 h      cycle deinterlace
 H      script-binding autodeint
 
-j      cycle-values af "" ""
-J      cycle deband
+j      cycle deband
+J      vf toggle "lavfi=[hqdn3d=2.0]"
 
-#k      vf toggle vapoursynth=~~/vs-scripts/decimate.py  # fix 24FPS videos encoded at 30FPS
-#k     ignore
+k      vf toggle vapoursynth=~~/vs-scripts/decimate.py  # fix 24FPS videos encoded at 30FPS
 K      ignore
-k      async screenshot                     # take a screenshot
-K      async screenshot video               # ...without subtitles
-Ctrl+k async screenshot window              # ...with subtitles and OSD, and scaled
 
 l      cycle-values loop-file yes no ; show-text "${?=loop-file==yes:Looping enabled (file)}${?=loop-file==no:Looping disabled (file)}"
 L      cycle-values loop-playlist yes no ; show-text "${?=loop-playlist==inf:Looping enabled}${?=loop-playlist==no:Looping disabled}"
@@ -192,8 +182,6 @@ c      script-message osc-playlist
 C      ignore
 v      script-message osc-tracklist
 V      ignore
-
-
 
 b      add speed +0.05
 B      add speed -0.05
@@ -237,7 +225,7 @@ META+BS           set video-zoom 0 ; show-text "Zoom resetted"
 
 # [F1] [F2] F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
 
-F1       script-binding console/enable
+F1       script-binding repl/repl-enable
 
 
 
