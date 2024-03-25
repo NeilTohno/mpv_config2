@@ -1,0 +1,133 @@
+MPV下载
+https://sourceforge.net/projects/mpv-player-windows/files/64bit/
+新版棒棒的 https://sourceforge.net/projects/mpv-player-windows/files/64bit-v3/
+
+搬了很多内容:
+   感谢， cczzhh @ vcb-s 论坛，hooke007 @github.com
+   hooke007 的懒人包 mpv-lazy
+   https://github.com/hooke007/MPV_lazy
+   hooke007 大佬的参考文档
+   https://hooke007.github.io/index.html
+
+ 使用需要在驱动里面添加为游戏 设置 驱动垂直同步，
+ 因为部分 api 需要这么做，那就全部都 驱动垂直同步 得了，麻烦
+
+不同分辨率的显示器的配置，需要自己全部改写。
+
+
+## 0.0
+要使用 mpv 播放网页内容，需要自己按这个页面操作，下载脚本
+https://greasyfork.org/zh-CN/scripts/416271-play-with-mpv
+yt-dlp.exe
+
+## 0.1 部分命令行
+
+#Bg audio too loud and speech too quiet
+af=drc=2
+af=lavfi=[dynaudnorm=g=5:f=250:r=0.9:p=0.5]
+af=lavfi=[loudnorm=I=-16:TP=-3:LRA=4]
+
+mpv.com --d3d11-adapter=help
+mpv.com --list-options
+
+mpv.com --no-config "q.mkv"
+[LOW LATENCY PLAYBACK]
+mpv.com --profile=help
+
+mpv.com --of=help
+
+mpv.com --show-profile=high-quality
+mpv.com --show-profile=low-latency
+mpv.com --show-profile=gpu-hq
+mpv.com --show-profile=sw-fast
+
+mpv.com --ad=help
+
+
+Profile gpu-hq:
+ scale=spline36
+ cscale=spline36
+ dscale=mitchell
+ dither-depth=auto
+ correct-downscaling=yes
+ linear-downscaling=yes
+ sigmoid-upscaling=yes
+ deband=yes
+
+
+[middle]scale
+
+blend-subtitles在hdr语境是tonemapping the subtitles，语言细节，仅供参考
+
+
+
+## 0.2 部分更新地址
+[mpv]
+https://github.com/mpv-player/mpv/blob/master/DOCS/interface-changes.rst
+
+https://github.com/shinchiro/mpv-winbuild-cmake
+
+https://sourceforge.net/projects/mpv-player-windows/files/64bit/
+
+https://sourceforge.net/projects/mpv-player-windows/files/64bit/?css-reload=2
+
+https://sourceforge.net/projects/mpv-player-windows/files/64bit-v3/?css-reload=2
+
+https://github.com/hooke007/MPV_lazy/tree/main/portable_config/shaders
+
+[MPV Changelog]
+
+https://github.com/mpv-player/mpv/blob/master/DOCS/interface-changes.rst
+
+[User Shaders]
+https://github.com/mpv-player/mpv/wiki/User-Scripts#user-shaders
+
+
+FSRCNN
+https://github.com/igv/FSRCNN-TensorFlow/releases
+https://github.com/HelpSeeker/FSRCNN-TensorFlow/releases
+
+
+nnedi3 and ravu  -- compute 分支
+https://github.com/bjin/mpv-prescalers/tree/master
+
+
+SSimDownscaler, SSimSuperRes, Krig, Adaptive Sharpen, etc.
+https://gist.github.com/igv
+
+stats.lua
+https://github.com/mpv-player/mpv/tree/master/player/lua
+
+
+auto_profiles.lua
+https://github.com/wiiaboo/mpv-scripts/blob/17e2a1d7e3595e5d490340d6b23512739358cf8d/auto-profiles.lua
+
+
+stats.lua
+https://github.com/mpv-player/mpv/tree/master/player/lua/stats.lua
+
+
+AMD FSR
+https://gist.github.com/agyild/82219c545228d70c5604f865ce0b0ce5
+
+AMD CAS
+https://gist.github.com/agyild/bbb4e58298b2f86aa24da3032a0d2ee6
+
+
+https://hooke007.github.io/unofficial/mpv_shaders.html#
+
+Chroma from Luma (CfL) Prediction( Lite 变体支持了 --vo=gpu)
+https://github.com/Artoriuz/glsl-chroma-from-luma-prediction
+https://github.com/Artoriuz/glsl-joint-bilateral
+https://github.com/Artoriuz/glsl-pixel-clipper
+
+CfL_Prediction.glsl
+
+PixelClipper.glsl
+https://github.com/deus0ww/mpv-conf/tree/master/shaders/cfl
+CfL_Prediction_Lite.glsl
+MemeBilateral_Lite.glsl
+
+
+https://github.com/deus0ww/mpv-conf/blob/master/scripts/Filter_Audio.lua
+
