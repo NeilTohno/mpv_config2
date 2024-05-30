@@ -69,7 +69,7 @@ ffmpeg -hide_banner -y -i %1 -c:a:0  pcm_f32le -af "aresample=osr=192000:osf=flt
 ::ffmpeg -h encode=wavpack 
 timeout /t 1 /nobreak
 
-ffmpeg -hide_banner -y -i "!tmpdir!%~n1_!loudness!LUFS.wv" -c:a wavpack -af "aresample=osr=48000:osf=fltp:cutoff=1.00:resampler=soxr:precision=33:cheby=1" "!tmpdir!%~n1_!loudness!LUFS_2.wv"
+ffmpeg -hide_banner -y -i "!tmpdir!%~n1_!loudness!LUFS.wv" -c:a wavpack -af "aresample=osr=48000:osf=fltp:resampler=soxr:precision=33:cheby=1" "!tmpdir!%~n1_!loudness!LUFS_2.wv"
 echo.
 
 @rem Encode Wave64 to AAC using QAAC
