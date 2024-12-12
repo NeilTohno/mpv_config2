@@ -1,9 +1,11 @@
 # mpv_config2
 mpv_1440p显示器_高功耗配置
+
 自己用的 mpv 配置文件哒，内容都是抄的啦。
 
 ###  MPV下载
 https://sourceforge.net/projects/mpv-player-windows/files/64bit/
+
 新版棒棒的
 https://sourceforge.net/projects/mpv-player-windows/files/64bit-v3/
 
@@ -12,6 +14,7 @@ https://github.com/NeilTohno/mpv_config
 
 ### 使用方法
 打包下载，自己搜索怎么操作，
+
 把 附件_cczzhh_分享一下自己的mpv配置.mpv.zip 以外的所有文件复制到 mpv 目录下
 
 ### 其他说明
