@@ -75,6 +75,7 @@ https://sourceforge.net/projects/mpv-player-windows/files/64bit-v3/?css-reload=2
 
 https://github.com/hooke007/MPV_lazy/tree/main/portable_config/shaders
 
+
 [MPV Changelog]
 
 https://github.com/mpv-player/mpv/blob/master/DOCS/interface-changes.rst
@@ -87,24 +88,30 @@ FSRCNN
 https://github.com/igv/FSRCNN-TensorFlow/releases
 https://github.com/HelpSeeker/FSRCNN-TensorFlow/releases
 
+CuNNy
+https://github.com/funnyplanter/CuNNy
+
+AniSD ArtCNN
+https://github.com/Sirosky/Upscale-Hub/releases/tag/AniSD-ArtCNN
+
+Ani4K v2 ArtCNN
+https://github.com/Sirosky/Upscale-Hub/releases/tag/Ani4k-v2-ArtCNN
 
 nnedi3 and ravu  -- compute 分支
 https://github.com/bjin/mpv-prescalers/tree/master
 
-
 SSimDownscaler, SSimSuperRes, Krig, Adaptive Sharpen, etc.
 https://gist.github.com/igv
-
-stats.lua
-https://github.com/mpv-player/mpv/tree/master/player/lua
-
 
 auto_profiles.lua
 https://github.com/wiiaboo/mpv-scripts/blob/17e2a1d7e3595e5d490340d6b23512739358cf8d/auto-profiles.lua
 
 
 stats.lua
-https://github.com/mpv-player/mpv/tree/master/player/lua/stats.lua
+https://github.com/mpv-player/mpv/tree/master/player/lua/
+
+other scripts,
+https://github.com/mpv-player/mpv/tree/master/TOOLS/lua
 
 
 AMD FSR
@@ -115,6 +122,7 @@ https://gist.github.com/agyild/bbb4e58298b2f86aa24da3032a0d2ee6
 
 
 https://hooke007.github.io/unofficial/mpv_shaders.html#
+https://github.com/hooke007/MPV_lazy/tree/main/portable_config/shaders
 
 Chroma from Luma (CfL) Prediction( Lite 变体支持了 --vo=gpu)
 https://github.com/Artoriuz/glsl-chroma-from-luma-prediction
@@ -123,11 +131,10 @@ https://github.com/Artoriuz/glsl-pixel-clipper
 
 CfL_Prediction.glsl
 
+
 PixelClipper.glsl
 https://github.com/deus0ww/mpv-conf/tree/master/shaders/cfl
 CfL_Prediction_Lite.glsl
 MemeBilateral_Lite.glsl
 
-
-https://github.com/deus0ww/mpv-conf/blob/master/scripts/Filter_Audio.lua
 
