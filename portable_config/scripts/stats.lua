@@ -7,7 +7,6 @@
 -- visible.
 
 local mp = require 'mp'
-local options = require 'mp.options'
 local utils = require 'mp.utils'
 local input = require 'mp.input'
 
@@ -56,10 +55,10 @@ local o = {
     font_mono = "monospace",   -- monospaced digits are sufficient
     font_size = 20,
     font_color = "",
-    border_size = 2,
+    border_size = 1.65,
     border_color = "",
-    shadow_x_offset = 0.0,
-    shadow_y_offset = 0.0,
+    shadow_x_offset = math.huge,
+    shadow_y_offset = math.huge,
     shadow_color = "",
     alpha = "11",
     vidscale = "auto",
@@ -89,7 +88,11 @@ local o = {
 
     bindlist = "no",  -- print page 4 to the terminal on startup and quit mpv
 }
-options.read_options(o)
+
+local update_scale
+require "mp.options".read_options(o, nil, function ()
+    update_scale()
+end)
 
 local format = string.format
 local max = math.max
@@ -181,8 +184,15 @@ local function text_style()
             style = style .. "\\4c&H" .. o.shadow_color .. "&\\4a&H" .. o.alpha .. "&"
         end
 
-        return style .. "\\xshad" .. shadow_x_offset ..
-               "\\yshad" .. shadow_y_offset .. "}"
+        if o.shadow_x_offset < math.huge then
+            style = style .. "\\xshad" .. shadow_x_offset
+        end
+
+        if o.shadow_y_offset < math.huge then
+            style = style .. "\\yshad" .. shadow_y_offset
+        end
+
+        return style .. "}"
     end
 end
 
@@ -1476,7 +1486,7 @@ local function print_page(page, after_scroll)
     end
 end
 
-local function update_scale(osd_height)
+update_scale = function ()
     local scale_with_video
     if o.vidscale == "auto" then
         scale_with_video = mp.get_property_native("osd-scale-by-window")
@@ -1487,6 +1497,7 @@ local function update_scale(osd_height)
     -- Calculate scaled metrics.
     -- Make font_size=n the same size as --osd-font-size=n.
     local scale = 288 / 720
+    local osd_height = mp.get_property_native("osd-height")
     if not scale_with_video and osd_height > 0 then
         scale = 288 / osd_height
     end
@@ -1498,14 +1509,6 @@ local function update_scale(osd_height)
     if display_timer:is_enabled() then
         print_page(curr_page)
     end
-end
-
-local function handle_osd_height_update(_, osd_height)
-    update_scale(osd_height)
-end
-
-local function handle_osd_scale_by_window_update()
-    update_scale(mp.get_property_native("osd-height"))
 end
 
 local function clear_screen()
@@ -1737,7 +1740,7 @@ end
 -- Reprint stats immediately when VO was reconfigured, only when toggled
 mp.register_event("video-reconfig",
     function()
-        if display_timer:is_enabled() then
+        if display_timer:is_enabled() and not display_timer.oneshot then
             print_page(curr_page)
         end
     end)
@@ -1766,5 +1769,5 @@ if o.bindlist ~= "no" then
     end)
 end
 
-mp.observe_property('osd-height', 'native', handle_osd_height_update)
-mp.observe_property('osd-scale-by-window', 'native', handle_osd_scale_by_window_update)
+mp.observe_property("osd-height", "native", update_scale)
+mp.observe_property("osd-scale-by-window", "native", update_scale)
